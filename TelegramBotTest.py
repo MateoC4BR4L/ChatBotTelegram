@@ -1,7 +1,9 @@
 import telebot
 
-api_token = "6270174416:AAGyj20uJq-35aZcR8FO3QjNcOy7Hc76GY4"
-bot = telebot.TeleBot(api_token)
+with open("Token/Token.txt", "r") as token:
+    token = token.read()
+
+bot = telebot.TeleBot(token)
 
 
 @bot.message_handler(commands=['start', 'help'])
