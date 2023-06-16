@@ -35,10 +35,12 @@ class WeatherHandler(Handlers):
             # Se suma una interacción más al contador
             CounterHandler.counter += 1
 
-            return weather
+            return f"Clima en la ciudad '{city}': {weather}"
         except Exception as e:
             # Caso de que salte un error por un ingreso incorrecto de la ciudad
             print(f"Se produjo un error: {str(e)}")
+            # Se suma una interacción más al contador
+            CounterHandler.counter += 1
 
             return str(e)
 
