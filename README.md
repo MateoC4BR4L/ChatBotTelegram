@@ -2,7 +2,8 @@
 
 <h3>- Introducción: </h3>
 
-- Este es un chatbot de Telegram creado en Python, utilizando la librería pyTelegramBotAPI.
+Este es un chatbot de Telegram creado en Python, utilizando la librería pyTelegramBotAPI.
+Los tokens de las API utilizadas no están en el repositorio por motivos de seguridad.
 
 <h3>- Funcionalidades: </h3>
 
