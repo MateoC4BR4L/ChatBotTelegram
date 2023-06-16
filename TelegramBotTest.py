@@ -1,11 +1,16 @@
 import telebot
+from Handlers import *
 
-with open("Token/Token.txt", "r") as token:
+# Obtengo el token del BOT contenido en el archivo (por seguridad)
+
+with open("Token.txt", "r") as token:
     token = token.read()
-
+# Creación del bot
 bot = telebot.TeleBot(token)
 
 
+# Comienzo del programa
+# Manejar los mensajes iniciales
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message,
@@ -18,9 +23,10 @@ def send_welcome(message):
     """)
 
 
+# Manejar todos los otros tipos de mensajes
 @bot.message_handler(func=lambda message: True)
-def echo_message(message):
-    bot.reply_to(message, f"{message.from_user.first_name}  {message.from_user.id}")
+def handlers(message):
+    bot.reply_to(message, WeatherHandler.handler(message))
 
 
 bot.infinity_polling()

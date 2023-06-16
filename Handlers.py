@@ -1,8 +1,21 @@
 from abc import ABC, abstractmethod
-from telebot.async_telebot import AsyncTeleBot
+from APIS import WeatherAPI, Lat_LonAPI
 
 
 class Handlers(ABC):
     @staticmethod
-    async def Handler(self, bot: AsyncTeleBot, message, next_handler: ABC):
+    @abstractmethod
+    def handler(message):
         pass
+
+
+class WeatherHandler(Handlers):
+    Keywords = ["/clima", "clima"]
+
+    @staticmethod
+    def handler(message):
+        if message in WeatherHandler.Keywords:
+
+            return
+        else:
+            return "nao nao amigao"
