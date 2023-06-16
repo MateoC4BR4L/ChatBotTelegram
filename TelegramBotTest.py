@@ -18,12 +18,12 @@ def send_welcome(message):
         CounterHandler.counter += 1
         bot.reply_to(message,
                      """\
-        Hola ¿Cómo estás?
-        ¡Soy un bot dispuesto a ayudarte en lo que me sea posible!
-        Te explico mis funcionalidades:
-        1- Si deseas puedo indicarte el clima de una ciudad en específico, para ello ingresa el comando <b> /clima </b>.
-        2- También puedo decirte la cantidad de nuestras interacciones, , para ello ingresa el comando <b> /contador </b>.\
-        """, parse_mode="html")
+Hola ¿Cómo estás?
+¡Soy un bot dispuesto a ayudarte en lo que me sea posible!
+Te explico mis funcionalidades:
+1- Si deseas puedo indicarte el clima de una ciudad en específico, para ello ingresa el comando <b> /clima </b>.
+2- También puedo decirte la cantidad de nuestras interacciones, , para ello ingresa el comando <b> /contador </b>.\
+""", parse_mode="html")
     else:
         # Se suma una interacción más al contador
         CounterHandler.counter += 1
@@ -60,8 +60,11 @@ def handlers(message):
 # Manejar en caso de que no se ingrese un comando y si una ciudad
 @bot.message_handler(content_types=["text"])
 def handlers(message):
-    bot.send_message(message.chat.id, WeatherHandler.get_weather_handler(message.text))
-
+    if WeatherHandler.get_weather:
+        bot.send_message(message.chat.id, WeatherHandler.get_weather_handler(message.text))
+    else:
+        CounterHandler.counter += 1
+        bot.send_message(message.chat.id, "Lo siento, no puedo procesar ese mensaje.")
 
 def Main():
     # Se configura los comandos del bot
